@@ -10,11 +10,9 @@ describe("rest parameters", function() {
             return result;
         };
 
-        //// Does not work because of $traceurRuntime.setProperty()
-        //// and $traceurRuntime.toProperty()
-        // let result = doWork("Scott", 1, 2, 3);
+        let result = doWork("Scott", 1, 2, 3);
 
-        // expect(result).toBe(6);
+        expect(result).toBe(6);
 
     });
 
