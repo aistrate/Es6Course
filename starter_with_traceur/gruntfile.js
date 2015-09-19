@@ -16,13 +16,16 @@ module.exports = function (grunt) {
                 experimental: true
             },
             custom: {
-                files: [{
-                    expand: true,
-                    src: ["app/es6/*.js"],
-                    dest: "app/es5/",
-                    ext: ".js",
-                    flatten: true
-                }]
+                // files: [{
+                //     expand: true,
+                //     src: ["app/es6/*.js"],
+                //     dest: "app/es5/",
+                //     ext: ".js",
+                //     flatten: true
+                // }]
+                files: {
+                    "app/es5/out.js": "app/es6/*.js"
+                }
             }
         },
         watch: {
