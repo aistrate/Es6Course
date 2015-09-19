@@ -29,7 +29,7 @@ describe("destructuring", function() {
             };
         };
 
-        //// Not working
+        //// Not working because of $traceurRuntime.assertObject()
         // let { firstName: firstName, twitter: twitter } = doWork();
 
         // expect(firstName).toBe("Scott");
