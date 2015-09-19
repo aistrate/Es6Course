@@ -13,7 +13,8 @@
   "devDependencies": {
   },
   "dependencies": {
-    "traceur": "~0.0.45",
-    "jasmine": "~2.0.0"
+    "traceur": "~0.0.91",
+    "traceur-runtime": "~0.0.59",
+    "jasmine": "~2.3.4"
   }
 }
