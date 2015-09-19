@@ -1,5 +1,3 @@
-"use strict";
-
 describe("destructuring", function() {
 
 	it("can destructure arrays", function() {

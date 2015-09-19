@@ -1,5 +1,3 @@
-"use strict";
-
 describe("how let works", function() {
 
 	it("will provide block scoping, unlike var", function() {

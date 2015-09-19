@@ -1,5 +1,3 @@
-"use strict";
-
 describe("using const", function() {
 
 	it("will make a variable read-only", function() {
