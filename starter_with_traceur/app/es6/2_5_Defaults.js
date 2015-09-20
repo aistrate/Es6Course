@@ -18,12 +18,11 @@ describe("default parameters", function() {
             return [a, b, c];
         };
 
-        //// Not working because of $traceurRuntime.assertObject()
-        // let [a, b, c] = doWork(5, undefined);
+        let [a, b, c] = doWork(5, undefined);
 
-        // expect(a).toBe(5);
-        // expect(b).toBe(2);
-        // expect(c).toBe(3);
+        expect(a).toBe(5);
+        expect(b).toBe(2);
+        expect(c).toBe(3);
 
     });
 
