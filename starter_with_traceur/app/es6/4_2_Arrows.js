@@ -33,4 +33,15 @@ describe("arrow functions", function() {
 
     });
 
+    it("lexically binds to 'this'", function(done) {
+
+        this.name = "Scott";
+
+        setTimeout(() => {
+            expect(this.name).toBe("Scott");
+            done();
+        }, 15);
+
+    });
+
 });
