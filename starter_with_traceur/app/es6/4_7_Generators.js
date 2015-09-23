@@ -51,7 +51,7 @@ describe("generators", function() {
 
             *[Symbol.iterator]() {
                 for (let e of this.employees) {
-                    console.log(e);
+                    // console.log(e);
                     yield e;
                 }
             }
@@ -59,7 +59,7 @@ describe("generators", function() {
 
         let filter = function*(items, predicate) {
             for (let item of items) {
-                console.log("filter", item);
+                // console.log("filter", item);
                 if (predicate(item)) {
                     yield item;
                 }
@@ -72,7 +72,7 @@ describe("generators", function() {
                 return;
             }
             for (let item of items) {
-                console.log("take", item);
+                // console.log("take", item);
                 yield item;
                 count += 1;
                 if (count >= number) {
