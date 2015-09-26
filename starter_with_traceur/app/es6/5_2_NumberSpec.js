@@ -1,4 +1,4 @@
-describe("Numbers", function() {
+describe("Number", function() {
 
     // it("should easily mistake numbers with leading zeros", function() {
 
