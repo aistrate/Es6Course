@@ -86,4 +86,28 @@ describe("Async generator", function() {
 
     });
 
+    it("should also work with promises", function(done) {
+
+        function *main() {
+            try {
+                var price = yield getStockPriceP();
+                expect(price).toBe(50);
+
+                if (price > 45) {
+                    yield executeTradeP();
+                } else {
+                    console.log('trade not made');
+                }
+            } catch(ex) {
+                expect(ex.message).toBeDefined();
+                console.log('error! ' + ex.message);
+            }
+
+            done();
+        }
+
+        asyncP.run(main);
+
+    });
+
 });

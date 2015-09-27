@@ -57,6 +57,30 @@ function oldPause(delay, callback) {
     };
 }());
 
+(function() {
+    var run = function(generator) {
+        var sequence;
+
+        var process = function(result) {
+            if (!result.done) {
+                result.value.then(function(value) {
+                    process(sequence.next(value));
+                }, function(error) {
+                    process(sequence.throw(error));
+                });
+            }
+        };
+
+        sequence = generator();
+        var next = sequence.next();
+        process(next);
+    };
+
+    window.asyncP = {
+        run: run
+    };
+}());
+
 function pause(delay) {
     setTimeout(function() {
         console.log('paused for ' + delay + ' ms');
@@ -80,4 +104,22 @@ function executeTrade() {
         console.log('trade completed');
         async.resume();
     }, 300);
+}
+
+function getStockPriceP() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve(50);
+        }, 300);
+    });
+}
+
+function executeTradeP() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            // reject(Error('Problem executing trade'));
+            console.log('trade completed');
+            resolve();
+        }, 300);
+    });
 }
