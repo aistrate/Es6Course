@@ -12,14 +12,14 @@ describe("Promise", function() {
     it("should execute the callback given to then", function(done) {
 
         var promise = new Promise(function(resolve, reject) {
-            console.log('before resolve');
+            // console.log('before resolve');
             resolve();
-            console.log('after resolve');
+            // console.log('after resolve');
         });
 
         promise.then(function() {
             expect(true).toBe(true);
-            console.log('done');
+            // console.log('done');
             done();
         });
 
@@ -112,7 +112,7 @@ describe("Promise", function() {
 
         var promise = new Promise(function(resolve, reject) {
             resolve();
-            console.log('async: ' + async);
+            // console.log('async: ' + async);
         });
 
         promise.then(function() {
