@@ -1,6 +1,6 @@
 // Only works in Firefox
 
-describe("Proxy", function() {
+describe("Proxies", function() {
 
     it("should let you intercept gets", function() {
 
@@ -49,6 +49,35 @@ describe("Proxy", function() {
 
         expect(proxyUnicorn.color).toBe('white');
         expect(proxyUnicorn.horn).toBe(true);
+
+    });
+
+    it("should let you proxy functions", function() {
+
+        var unicorn = {
+            legs: 4,
+            color: 'brown',
+            horn: true,
+            hornAttack: function(target) {
+                return target.name + ' was obliterated!';
+            }
+        };
+
+        unicorn.hornAttack = new Proxy(unicorn.hornAttack, {
+            apply: function(target, context, args) {
+                if (context !== unicorn) {
+                    return 'nobody can use unicorn horn but unicorn!';
+                } else {
+                    return target.apply(context, args);
+                }
+            }
+        });
+
+        var thief = { name: 'Rupert' };
+        thief.attack = unicorn.hornAttack;
+
+        expect(thief.attack()).toBe('nobody can use unicorn horn but unicorn!');
+        expect(unicorn.hornAttack(thief)).toBe('Rupert was obliterated!');
 
     });
 
