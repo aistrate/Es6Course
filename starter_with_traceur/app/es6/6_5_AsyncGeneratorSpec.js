@@ -43,4 +43,47 @@ describe("Async generator", function() {
 
     });
 
+    it("should work with returned data", function(done) {
+
+        function *main() {
+            var price = yield getStockPrice();
+            expect(price).toBe(50);
+
+            if (price > 45) {
+                yield executeTrade();
+            } else {
+                console.log('trade not made');
+            }
+
+            done();
+        }
+
+        async.run(main);
+
+    });
+
+    it("should work with errors", function(done) {
+
+        function *main() {
+            try {
+                var price = yield getStockPrice();
+                expect(price).toBe(50);
+
+                if (price > 45) {
+                    yield executeTrade();
+                } else {
+                    console.log('trade not made');
+                }
+            } catch(ex) {
+                expect(ex.message).toBeDefined();
+                console.log('error! ' + ex.message);
+            }
+
+            done();
+        }
+
+        async.run(main);
+
+    });
+
 });

@@ -41,14 +41,19 @@ function oldPause(delay, callback) {
         sequence.next();
     };
 
-    var resume = function() {
+    var resume = function(value) {
         // console.log('async.resume');
-        sequence.next();
+        sequence.next(value);
+    };
+
+    var fail = function(reason) {
+        sequence.throw(reason);
     };
 
     window.async = {
         run: run,
-        resume: resume
+        resume: resume,
+        fail: fail
     };
 }());
 
@@ -57,4 +62,22 @@ function pause(delay) {
         console.log('paused for ' + delay + ' ms');
         async.resume();
     }, delay);
+}
+
+function getStockPrice() {
+    setTimeout(function() {
+        try {
+            // throw Error('There was a problem getting the stock price!');
+            async.resume(50);
+        } catch(ex) {
+            async.fail(ex);
+        }
+    }, 300);
+}
+
+function executeTrade() {
+    setTimeout(function() {
+        console.log('trade completed');
+        async.resume();
+    }, 300);
 }
