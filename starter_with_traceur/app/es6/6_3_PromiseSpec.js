@@ -124,4 +124,68 @@ describe("Promise", function() {
 
     });
 
+    it("should chain sequentially using then", function(done) {
+
+        getOrder(3).then(function(order) {
+            return getUser(order.userId);
+        }).then(function(user) {
+            return getCompany(user.companyId);
+        }).then(function(company) {
+            expect(company.name).toBe('Pluralsight');
+            done();
+        }).catch(function(error) {
+            // handle error
+        });
+
+    });
+
+    it("should chain sequentially using then (with lambdas)", function(done) {
+
+        getOrder(3)
+            .then(order => getUser(order.userId))
+            .then(user => getCompany(user.companyId))
+            .then(company => {
+                expect(company.name).toBe('Pluralsight');
+                done();
+            })
+            .catch(error => {
+                // handle error
+            });
+
+    });
+
+    it("should execute after all promises with all", function(done) {
+
+        var courseIds = [1, 2, 3];
+        var promises = [];
+
+        for (let i = 0; i < courseIds.length; i++) {
+            promises.push(getCourse(courseIds[i]));
+        }
+
+        Promise.all(promises).then(values => {
+            expect(values.length).toBe(3);
+            // values.forEach(value => console.log(value.name));
+            done();
+        });
+
+    });
+
+    it("should resolve after the first promise", function(done) {
+
+        var courseIds = [1, 2, 3];
+        var promises = [];
+
+        for (let i = 0; i < courseIds.length; i++) {
+            promises.push(getCourse(courseIds[i]));
+        }
+
+        Promise.race(promises).then(firstValue => {
+            expect(firstValue.name).toBeDefined();
+            // console.log(firstValue.name);
+            done();
+        });
+
+    });
+
 });
