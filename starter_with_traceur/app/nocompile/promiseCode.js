@@ -18,3 +18,43 @@ function getCourse(courseId) {
     };
     return Promise.resolve(courses[courseId]);
 }
+
+function naivePause(delay) {
+    setTimeout(function() {
+        console.log('paused for ' + delay + ' ms');
+    }, delay);
+}
+
+function oldPause(delay, callback) {
+    setTimeout(function() {
+        console.log('paused for ' + delay + ' ms');
+        callback();
+    }, delay);
+}
+
+(function() {
+    var sequence;
+
+    var run = function(generator) {
+        sequence = generator();
+        // console.log('async.run');
+        sequence.next();
+    };
+
+    var resume = function() {
+        // console.log('async.resume');
+        sequence.next();
+    };
+
+    window.async = {
+        run: run,
+        resume: resume
+    };
+}());
+
+function pause(delay) {
+    setTimeout(function() {
+        console.log('paused for ' + delay + ' ms');
+        async.resume();
+    }, delay);
+}
