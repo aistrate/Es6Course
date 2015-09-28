@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="traceur/traceur.js"></script>
+        <script>
+            // traceur.options.experimental = true;
+        </script>
+
+        <script type="module">
+
+            import { Employee } from "./es6/Employee.js";
+
+            var e = new Employee("Scott");
+            document.write(e.doWork());
+
+        </script>
+
+        <script>
+            new traceur.WebPageTranscoder(document.location.href).run();
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
