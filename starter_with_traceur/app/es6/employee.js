@@ -1,10 +1,12 @@
+let s_name = Symbol();
+
 export class Employee {
     constructor(name) {
-        this._name = name;
+        this[s_name] = name;
     }
 
     get name() {
-        return this._name;
+        return this[s_name];
     }
 
     doWork() {
