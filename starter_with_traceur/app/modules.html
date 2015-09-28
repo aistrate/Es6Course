@@ -7,13 +7,19 @@
 
         <script type="module">
 
-            import { Employee, log, modelEmployee } from "./es6/Employee.js";
+            import { Employee, log, modelEmployee } from "./es6/employee.js";
 
             log(modelEmployee);
 
             var e = new Employee("Scott");
             e._name = "Joy";
             document.write(e.doWork());
+
+        </script>
+
+        <script type="module">
+
+            import "./es6/main.js";
 
         </script>
 
