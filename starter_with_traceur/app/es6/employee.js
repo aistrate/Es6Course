@@ -11,3 +11,11 @@ export class Employee {
         return `${this.name} is working`;
     }
 }
+
+export let log = function(employee) {
+    console.log(employee.name);
+}
+
+export let defaultRaise = 0.03;
+
+export let modelEmployee = new Employee("Allen");
